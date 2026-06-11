@@ -93,7 +93,7 @@ export default function LoginPage() {
 
       <p className="text-center text-sm text-muted mt-6">
         No account yet?{' '}
-        <Link href="/auth/register" className="text-primary hover:text-primary/80 font-medium transition-colors">
+        <Link href="/register" className="text-primary hover:text-primary/80 font-medium transition-colors">
           Create one free
         </Link>
       </p>
