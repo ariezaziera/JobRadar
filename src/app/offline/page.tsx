@@ -1,3 +1,5 @@
+'use client'
+
 import { Radar, WifiOff } from 'lucide-react'
 import Link from 'next/link'
 
