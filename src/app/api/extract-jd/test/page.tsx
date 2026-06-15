@@ -11,7 +11,7 @@ export default function TestExtractPage() {
   return (
     <div className="min-h-screen bg-background p-10 max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold mb-2">JD Extractor — Dev Test</h1>
-      <p className="text-muted text-sm mb-8">Paste a job listing URL to test Gemini extraction.</p>
+      <p className="text-muted text-sm mb-8">Paste a job listing URL to test AI extraction.</p>
 
       <div className="flex gap-3 mb-6">
         <input

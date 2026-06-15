@@ -127,7 +127,7 @@ const FEATURES = [
   {
     icon: Sparkles,
     title: 'AI JD Extraction',
-    desc: 'Paste any job URL. Gemini reads the listing and auto-fills company, role, skills, salary range, and experience level.',
+    desc: 'Paste any job URL. AI reads the listing and auto-fills company, role, skills, salary range, and experience level.',
   },
   {
     icon: LayoutKanban,
@@ -200,7 +200,7 @@ const STEPS = [
   {
     step: '02',
     title: 'Paste a job URL',
-    desc: 'Drop any job listing URL into the form. Gemini extracts all the key details automatically.',
+    desc: 'Drop any job listing URL into the form. AI extracts all the key details automatically.',
   },
   {
     step: '03',

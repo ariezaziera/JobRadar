@@ -42,3 +42,17 @@ export interface Application {
   created_at: string
   updated_at: string
 }
+
+export type ReminderType = 'follow_up' | 'interview' | 'deadline' | 'custom'
+export type ReminderStatus = 'pending' | 'sent' | 'cancelled'
+
+export interface Reminder {
+  id: string
+  user_id: string
+  application_id: string
+  type: ReminderType
+  message: string | null
+  remind_at: string
+  status: ReminderStatus
+  created_at: string
+}

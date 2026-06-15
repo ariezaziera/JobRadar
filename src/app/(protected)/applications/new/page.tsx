@@ -125,7 +125,7 @@ export default function NewApplicationPage() {
         <div className="flex items-center gap-2 mb-4">
           <Sparkles size={16} className="text-accent" />
           <span className="text-sm font-medium">AI Auto-fill</span>
-          <span className="text-xs text-muted ml-auto">Powered by Gemini</span>
+          <span className="text-xs text-muted ml-auto">Powered by AI</span>
         </div>
 
         {/* Mode toggle */}

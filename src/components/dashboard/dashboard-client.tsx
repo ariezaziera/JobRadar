@@ -15,6 +15,7 @@ import {
   Award, Plus, ArrowRight, Target
 } from 'lucide-react'
 import type { Application, Profile } from '@/types'
+import { ExportButton } from '@/components/applications/export-button'
 
 interface Props {
   applications: Application[]
@@ -28,23 +29,29 @@ export function DashboardClient({ applications, profile }: Props) {
     <div className="px-8 py-10 space-y-6">
 
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold mb-1">
-            {profile?.full_name
-              ? `Hey, ${profile.full_name.split(' ')[0]} 👋`
-              : 'Dashboard'}
-          </h1>
-          <p className="text-sm text-muted">Here's how your job search is going.</p>
+        <div className="flex items-center justify-between mb-8">
+            <div>
+                <h1 className="text-2xl font-bold mb-1">
+                {profile?.full_name
+                    ? `Hey, ${profile.full_name.split(' ')[0]} 👋`
+                    : 'Dashboard'}
+                </h1>
+                <p className="text-sm text-muted">Here's how your job search is going.</p>
+            </div>
+            <div className="flex items-center gap-3">
+                <ExportButton
+                applications={applications}
+                profileName={profile?.full_name}
+                />
+                <Link
+                href="/applications/new"
+                className="flex items-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white text-sm font-medium rounded-xl transition-colors"
+                >
+                <Plus size={16} />
+                New Application
+                </Link>
+            </div>
         </div>
-        <Link
-          href="/applications/new"
-          className="flex items-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white text-sm font-medium rounded-xl transition-colors"
-        >
-          <Plus size={16} />
-          New Application
-        </Link>
-      </div>
 
       {/* Stat cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

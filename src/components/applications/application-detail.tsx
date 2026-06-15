@@ -9,10 +9,13 @@ import {
   ArrowLeft, ExternalLink, Trash2, Edit3, Check,
   X, MapPin, Calendar, Building2, Briefcase,
   DollarSign, Layers, FileText, StickyNote,
-  ChevronDown, Loader2, CheckCircle2, XCircle,
+  ChevronDown, Loader2, CheckCircle2, XCircle, Brain,
 } from 'lucide-react'
 import Link from 'next/link'
 import type { Application, ApplicationStatus } from '@/types'
+import { InterviewPrepModal } from './interview-prep-modal'
+import { CoverLetterModal } from './cover-letter-modal'
+import { RemindersPanel } from './reminders-panel'
 
 const STATUS_OPTIONS: ApplicationStatus[] = [
   'applied', 'response', 'interview', 'tech_test', 'offer', 'rejected', 'ghosted'
@@ -39,6 +42,8 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
   const [editingInterview, setEditingInterview] = useState(false)
   const [interviewValue, setInterviewValue] = useState(app.interview_date ?? '')
   const [savingNotes, setSavingNotes] = useState(false)
+  const [showCoverLetter, setShowCoverLetter] = useState(false)
+  const [showInterviewPrep, setShowInterviewPrep] = useState(false)
 
   // ── Skills match ──
   const userSkillsLower = userSkills.map(s => s.toLowerCase())
@@ -119,6 +124,20 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
                 <ExternalLink size={16} />
               </a>
             )}
+            <button
+              onClick={() => setShowCoverLetter(true)}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border hover:border-primary/40 text-sm text-muted hover:text-foreground transition-colors"
+            >
+              <FileText size={16} />
+              Cover Letter
+            </button>
+            <button
+              onClick={() => setShowInterviewPrep(true)}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border hover:border-accent/40 text-sm text-muted hover:text-foreground transition-colors"
+            >
+              <Brain size={16} />
+              Interview Prep
+            </button>
             <button
               onClick={handleDelete}
               className="p-2 rounded-xl border border-border hover:border-red-500/40 text-muted hover:text-red-400 transition-colors"
@@ -205,7 +224,6 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
               <p className="text-sm text-muted">No required skills listed for this role.</p>
             ) : (
               <>
-                {/* Score bar */}
                 {matchPct !== null && (
                   <div className="mb-5">
                     <div className="flex items-center justify-between text-xs text-muted mb-2">
@@ -226,7 +244,6 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
                   </div>
                 )}
 
-                {/* Matched */}
                 {matched.length > 0 && (
                   <div className="mb-4">
                     <p className="text-xs text-muted uppercase tracking-wider mb-2">
@@ -239,16 +256,13 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
                           className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono"
                         >
                           <CheckCircle2 size={11} />
-                          {app.required_skills?.find(
-                            s => s.toLowerCase() === skill
-                          ) ?? skill}
+                          {app.required_skills?.find(s => s.toLowerCase() === skill) ?? skill}
                         </span>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* Missing */}
                 {missing.length > 0 && (
                   <div>
                     <p className="text-xs text-muted uppercase tracking-wider mb-2">
@@ -261,9 +275,7 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
                           className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-mono"
                         >
                           <XCircle size={11} />
-                          {app.required_skills?.find(
-                            s => s.toLowerCase() === skill
-                          ) ?? skill}
+                          {app.required_skills?.find(s => s.toLowerCase() === skill) ?? skill}
                         </span>
                       ))}
                     </div>
@@ -339,7 +351,6 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
         {/* ── Right column ── */}
         <div className="space-y-5">
 
-          {/* Summary */}
           {app.summary && (
             <div className="p-6 rounded-2xl bg-card border border-border">
               <h2 className="font-semibold flex items-center gap-2 mb-3">
@@ -350,7 +361,6 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
             </div>
           )}
 
-          {/* Notes */}
           <div className="p-6 rounded-2xl bg-card border border-border">
             <div className="flex items-center justify-between mb-3">
               <h2 className="font-semibold flex items-center gap-2">
@@ -411,7 +421,8 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
             )}
           </div>
 
-          {/* All required skills */}
+          <RemindersPanel applicationId={app.id} />
+
           {(app.required_skills?.length ?? 0) > 0 && (
             <div className="p-6 rounded-2xl bg-card border border-border">
               <h2 className="font-semibold text-sm mb-3">All Required Skills</h2>
@@ -430,6 +441,21 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
 
         </div>
       </div>
+
+      {/* Modals */}
+      {showCoverLetter && (
+        <CoverLetterModal
+          application={app}
+          onClose={() => setShowCoverLetter(false)}
+        />
+      )}
+      {showInterviewPrep && (
+        <InterviewPrepModal
+          application={app}
+          onClose={() => setShowInterviewPrep(false)}
+        />
+      )}
+
     </div>
   )
 }
