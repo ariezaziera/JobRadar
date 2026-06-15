@@ -8,6 +8,7 @@ import {
   Radar, LayoutDashboard, BriefcaseBusiness,
   Kanban, User, LogOut, Plus
 } from 'lucide-react'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 const NAV = [
   { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -72,16 +73,20 @@ export function Sidebar() {
         })}
       </nav>
 
-      {/* Sign out */}
-      <div className="p-4 border-t border-border">
-        <button
-          onClick={signOut}
-          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-muted hover:text-foreground hover:bg-white/5 transition-colors w-full"
-        >
-          <LogOut size={18} />
-          Sign out
-        </button>
-      </div>
+      {/* Sign out + theme */}
+        <div className="p-4 border-t border-border space-y-1">
+            <div className="flex items-center justify-between px-1">
+                <span className="text-xs text-muted px-2">Appearance</span>
+                <ThemeToggle />
+            </div>
+            <button
+                onClick={signOut}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-muted hover:text-foreground hover:bg-white/5 transition-colors w-full"
+            >
+                <LogOut size={18} />
+                Sign out
+            </button>
+        </div>
     </aside>
   )
 }

@@ -7,6 +7,7 @@ import '@fontsource/jetbrains-mono/400.css'
 import '@fontsource/jetbrains-mono/500.css'
 import './globals.css'
 import { QueryProvider } from '@/providers/query-provider'
+import { ThemeProvider } from '@/providers/theme-provider'
 
 export const viewport: Viewport = {
   themeColor: '#6366F1',
@@ -25,15 +26,7 @@ export const metadata: Metadata = {
     statusBarStyle: 'black-translucent',
     title: 'JobRadar',
   },
-  formatDetection: {
-    telephone: false,
-  },
-  openGraph: {
-    type: 'website',
-    title: 'JobRadar',
-    description: 'AI-powered job application tracker',
-    siteName: 'JobRadar',
-  },
+  formatDetection: { telephone: false },
   icons: {
     icon: [
       { url: '/icons/manifest-icon-192.maskable.png', sizes: '192x192', type: 'image/png' },
@@ -50,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -60,9 +53,16 @@ export default function RootLayout({
         <link rel="apple-touch-startup-image" href="/icons/manifest-icon-512.maskable.png" />
       </head>
       <body>
-        <QueryProvider>
-          {children}
-        </QueryProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <QueryProvider>
+            {children}
+          </QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

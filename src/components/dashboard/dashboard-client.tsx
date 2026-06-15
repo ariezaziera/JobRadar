@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import {
   AreaChart, Area, BarChart, Bar,
@@ -22,36 +22,67 @@ interface Props {
   profile: Profile | null
 }
 
+// ── Chart colors hook (must be outside component) ──
+function useChartColors() {
+  const [colors, setColors] = useState({
+    grid: '#2A2A36',
+    text: '#6B7280',
+    tooltipBg: '#1A1A24',
+    tooltipBorder: '#2A2A36',
+  })
+
+  useEffect(() => {
+    const root = document.documentElement
+    const get = (v: string) => `rgb(${getComputedStyle(root).getPropertyValue(v).trim()})`
+
+    const update = () => setColors({
+      grid: get('--color-border'),
+      text: get('--color-muted'),
+      tooltipBg: get('--color-card'),
+      tooltipBorder: get('--color-border'),
+    })
+
+    update()
+
+    const observer = new MutationObserver(update)
+    observer.observe(root, { attributes: true, attributeFilter: ['class'] })
+    return () => observer.disconnect()
+  }, [])
+
+  return colors
+}
+
 export function DashboardClient({ applications, profile }: Props) {
   const stats = useMemo(() => computeStats(applications), [applications])
+  const chartColors = useChartColors()
 
   return (
     <div className="px-8 py-10 space-y-6">
 
       {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-            <div>
-                <h1 className="text-2xl font-bold mb-1">
-                {profile?.full_name
-                    ? `Hey, ${profile.full_name.split(' ')[0]} 👋`
-                    : 'Dashboard'}
-                </h1>
-                <p className="text-sm text-muted">Here's how your job search is going.</p>
-            </div>
-            <div className="flex items-center gap-3">
-                <ExportButton
-                applications={applications}
-                profileName={profile?.full_name}
-                />
-                <Link
-                href="/applications/new"
-                className="flex items-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white text-sm font-medium rounded-xl transition-colors"
-                >
-                <Plus size={16} />
-                New Application
-                </Link>
-            </div>
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-2xl font-bold mb-1">
+            {profile?.full_name
+              ? `Hey, ${profile.full_name.split(' ')[0]} 👋`
+              : 'Dashboard'}
+          </h1>
+          <p className="text-sm text-muted">Here's how your job search is going.</p>
         </div>
+        <div className="flex items-center gap-3">
+          <ExportButton
+            applications={applications}
+            profileName={profile?.full_name}
+          />
+          <Link
+            href="/applications/new"
+            className="flex items-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white text-sm font-medium rounded-xl transition-colors"
+          >
+            <Plus size={16} />
+            New Application
+          </Link>
+        </div>
+      </div>
 
       {/* Stat cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -107,15 +138,15 @@ export function DashboardClient({ applications, profile }: Props) {
                     <stop offset="95%" stopColor="#6366F1" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#2A2A36" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke={chartColors.grid} vertical={false} />
                 <XAxis
                   dataKey="week"
-                  tick={{ fill: '#6B7280', fontSize: 11 }}
+                  tick={{ fill: chartColors.text, fontSize: 11 }}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis
-                  tick={{ fill: '#6B7280', fontSize: 11 }}
+                  tick={{ fill: chartColors.text, fontSize: 11 }}
                   axisLine={false}
                   tickLine={false}
                   allowDecimals={false}
@@ -166,8 +197,8 @@ export function DashboardClient({ applications, profile }: Props) {
                   <Tooltip
                     formatter={(v, _, p) => [v, p.payload.label]}
                     contentStyle={{
-                      background: '#1A1A24',
-                      border: '1px solid #2A2A36',
+                      background: chartColors.tooltipBg,
+                      border: `1px solid ${chartColors.tooltipBorder}`,
                       borderRadius: '10px',
                       fontSize: '12px',
                     }}
@@ -205,15 +236,15 @@ export function DashboardClient({ applications, profile }: Props) {
         {stats.matchDistribution.some(d => d.count > 0) ? (
           <ResponsiveContainer width="100%" height={160}>
             <BarChart data={stats.matchDistribution} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#2A2A36" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke={chartColors.grid} vertical={false} />
               <XAxis
                 dataKey="range"
-                tick={{ fill: '#6B7280', fontSize: 11 }}
+                tick={{ fill: chartColors.text, fontSize: 11 }}
                 axisLine={false}
                 tickLine={false}
               />
               <YAxis
-                tick={{ fill: '#6B7280', fontSize: 11 }}
+                tick={{ fill: chartColors.text, fontSize: 11 }}
                 axisLine={false}
                 tickLine={false}
                 allowDecimals={false}
@@ -382,20 +413,17 @@ function computeStats(applications: Application[]) {
       )
     : 0
 
-  // Avg match
   const withScore = applications.filter(a => a.match_score !== null)
   const avgMatch = withScore.length > 0
     ? Math.round(withScore.reduce((s, a) => s + (a.match_score ?? 0), 0) / withScore.length)
     : null
 
-  // This week
   const weekAgo = new Date()
   weekAgo.setDate(weekAgo.getDate() - 7)
   const thisWeek = applications.filter(
     a => new Date(a.applied_date) >= weekAgo
   ).length
 
-  // Timeline — last 8 weeks
   const timeline = Array.from({ length: 8 }, (_, i) => {
     const d = new Date()
     d.setDate(d.getDate() - (7 - i) * 7)
@@ -415,7 +443,6 @@ function computeStats(applications: Application[]) {
     }
   })
 
-  // Status breakdown
   const statusBreakdown = Object.entries(
     applications.reduce((acc, a) => {
       acc[a.status] = (acc[a.status] ?? 0) + 1
@@ -429,7 +456,6 @@ function computeStats(applications: Application[]) {
     }))
     .sort((a, b) => b.count - a.count)
 
-  // Match distribution
   const matchDistribution = [
     { range: '0–20%', rangeStart: 0, rangeEnd: 20 },
     { range: '21–40%', rangeStart: 21, rangeEnd: 40 },

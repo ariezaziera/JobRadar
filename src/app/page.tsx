@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Sparkles, LayoutGrid as LayoutKanban, Target, BarChart2, Bell, User } from 'lucide-react'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 export default function LandingPage() {
   return (
@@ -26,6 +27,7 @@ function Nav() {
           <Link href="#how-it-works" className="hover:text-foreground transition-colors">How it works</Link>
         </nav>
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <Link
             href="/login"
             className="text-sm text-muted hover:text-foreground transition-colors px-4 py-2"
@@ -65,8 +67,8 @@ function Hero() {
   return (
     <section className="pt-32 pb-24 px-6 relative">
       {/* Glow blobs */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-150 h-100 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-40 left-1/3 w-75 h-[300px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="glow-blob absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="glow-blob absolute top-40 left-1/3 w-[300px] h-[300px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto text-center relative">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-medium mb-8">
@@ -91,13 +93,13 @@ function Hero() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            href="/auth/register"
+            href="/register"
             className="w-full sm:w-auto px-8 py-3.5 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-all hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] text-center"
           >
             Start tracking free
           </Link>
           <Link
-            href="/auth/login"
+            href="/login"
             className="w-full sm:w-auto px-8 py-3.5 border border-border hover:border-primary/50 text-foreground rounded-xl transition-colors text-center text-sm"
           >
             Sign in to your account
@@ -224,7 +226,7 @@ function HowItWorks() {
         </div>
 
         <div className="space-y-px">
-          {STEPS.map((s, i) => (
+          {STEPS.map((s) => (
             <div
               key={s.step}
               className="flex gap-8 p-8 rounded-2xl hover:bg-card/50 transition-colors group"
@@ -286,7 +288,7 @@ function CTA() {
       <div className="max-w-2xl mx-auto text-center">
         <div className="p-12 rounded-3xl bg-card border border-border relative overflow-hidden">
           <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="glow-blob absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
           <Logo />
           <h2 className="text-3xl font-bold mt-6 mb-4">
@@ -296,7 +298,7 @@ function CTA() {
             Start tracking applications in minutes. Free, AI-powered, and built for the modern job hunt.
           </p>
           <Link
-            href="/auth/register"
+            href="/register"
             className="inline-block px-10 py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-xl transition-all hover:shadow-[0_0_40px_rgba(99,102,241,0.35)]"
           >
             Create your free account

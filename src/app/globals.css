@@ -1,25 +1,39 @@
 @import "tailwindcss";
 
 @layer base {
-  :root {
-    --background: #0F0F13;
-    --card: #1A1A24;
-    --primary: #6366F1;
-    --accent: #22D3EE;
-    --foreground: #F1F1F5;
-    --muted: #6B7280;
-    --border: #2A2A36;
+  /* Dark theme (default) */
+  :root,
+  .dark {
+    --color-background: 15 15 19;
+    --color-card:       26 26 36;
+    --color-primary:    99 102 241;
+    --color-accent:     34 211 238;
+    --color-foreground: 241 241 245;
+    --color-muted:      107 114 128;
+    --color-border:     42 42 54;
+  }
+
+  /* Light theme */
+  .light {
+    --color-background: 250 250 252;
+    --color-card:       255 255 255;
+    --color-primary:    99 102 241;
+    --color-accent:     8 145 178;
+    --color-foreground: 17 17 24;
+    --color-muted:      107 114 128;
+    --color-border:     228 228 234;
   }
 
   * {
-    border-color: var(--border);
+    border-color: rgb(var(--color-border));
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
     font-family: 'Syne', sans-serif;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   .font-mono {
@@ -27,28 +41,16 @@
   }
 
   ::selection {
-    background: #6366F133;
-    color: #F1F1F5;
+    background: rgb(var(--color-primary) / 0.2);
+    color: rgb(var(--color-foreground));
   }
 
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--background);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 3px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--muted);
-  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: rgb(var(--color-background)); }
+  ::-webkit-scrollbar-thumb { background: rgb(var(--color-border)); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-muted)); }
 }
 
-/* Add to globals.css */
-
-/* Smooth page transitions */
 @layer utilities {
   .animate-in {
     animation: fadeIn 0.2s ease-out;
@@ -57,17 +59,24 @@
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0);   }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Date input dark mode fix */
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(0.5);
   cursor: pointer;
 }
 
-/* Select dark mode fix */
+.light input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.3);
+}
+
 select option {
-  background-color: #1A1A24;
-  color: #F1F1F5;
+  background-color: rgb(var(--color-card));
+  color: rgb(var(--color-foreground));
+}
+
+/* Dim decorative glows in light mode */
+.light .glow-blob {
+  opacity: 0.4;
 }

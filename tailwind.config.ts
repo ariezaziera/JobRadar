@@ -6,20 +6,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#0F0F13',
-        card: '#1A1A24',
-        primary: '#6366F1',
-        accent: '#22D3EE',
-        border: '#2A2A36',
-        muted: '#6B7280',
-        // tailwind.config.ts — add inside theme.extend
-        padding: {
-        'safe-area-pb': 'env(safe-area-inset-bottom)',
-        },
+        background: 'rgb(var(--color-background) / <alpha-value>)',
+        card: 'rgb(var(--color-card) / <alpha-value>)',
+        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        border: 'rgb(var(--color-border) / <alpha-value>)',
+        muted: 'rgb(var(--color-muted) / <alpha-value>)',
+        foreground: 'rgb(var(--color-foreground) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['Syne', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
+      },
+      padding: {
+        'safe-area-pb': 'env(safe-area-inset-bottom)',
       },
     },
   },

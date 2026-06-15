@@ -6,7 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useProfile, useUpdateProfile } from '@/hooks/use-profile'
 import { Input } from '@/components/ui/input'
-import { X, Plus, CheckCircle2, Loader2, User } from 'lucide-react'
+import { X, Plus, CheckCircle2, Loader2, User, Palette } from 'lucide-react'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 const schema = z.object({
   full_name: z.string().min(2, 'Name is required'),
@@ -103,6 +104,23 @@ export default function ProfilePage() {
               {...register('target_role')}
             />
           </section>
+
+          {/* Appearance */}
+            <section className="p-6 rounded-2xl bg-card border border-border">
+                <h2 className="font-semibold text-sm text-muted uppercase tracking-wider mb-4">Appearance</h2>
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center">
+                        <Palette size={16} className="text-primary" />
+                    </div>
+                    <div>
+                        <p className="text-sm font-medium">Theme</p>
+                        <p className="text-xs text-muted">Switch between dark and light mode</p>
+                    </div>
+                    </div>
+                    <ThemeToggle />
+                </div>
+            </section>
 
           {/* Preferences */}
           <section className="p-6 rounded-2xl bg-card border border-border space-y-4">
