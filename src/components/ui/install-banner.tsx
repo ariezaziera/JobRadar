@@ -63,7 +63,7 @@ export function InstallBanner() {
       <div className="bg-card border border-primary/30 rounded-2xl shadow-2xl shadow-primary/10 p-4">
         <div className="flex items-start gap-3">
           {/* Icon */}
-          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shrink-0">
             <Radar size={20} color="white" />
           </div>
 
@@ -78,7 +78,7 @@ export function InstallBanner() {
           {/* Close */}
           <button
             onClick={handleDismiss}
-            className="p-1 rounded-lg hover:bg-white/10 text-muted hover:text-foreground transition-colors flex-shrink-0"
+            className="p-1 rounded-lg hover:bg-white/10 text-muted hover:text-foreground transition-colors shrink-0"
           >
             <X size={15} />
           </button>

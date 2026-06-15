@@ -41,7 +41,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               'Analytics dashboard',
             ].map((item) => (
               <div key={item} className="flex items-center gap-3 text-sm text-muted">
-                <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                 {item}
               </div>
             ))}

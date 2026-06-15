@@ -62,7 +62,7 @@ export function DiscoverTeaser() {
                 </div>
                 {job.fit_score !== null && (
                   <span
-                    className="text-xs font-mono font-medium px-2 py-0.5 rounded-md flex-shrink-0 ml-3"
+                    className="text-xs font-mono font-medium px-2 py-0.5 rounded-md shrink-0 ml-3"
                     style={{ color: fitColor, backgroundColor: `${fitColor}15` }}
                   >
                     {job.fit_score}%

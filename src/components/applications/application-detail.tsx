@@ -113,7 +113,7 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             {app.url && (
               <a
                 href={app.url}

@@ -69,7 +69,7 @@ export function InterviewPrepModal({ application, onClose }: Props) {
       <div className="relative w-full max-w-2xl bg-card border border-border rounded-2xl shadow-2xl flex flex-col max-h-[90vh]">
 
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-border flex-shrink-0">
+        <div className="flex items-center justify-between p-6 border-b border-border shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-accent/15 flex items-center justify-center">
               <Brain size={18} className="text-accent" />
@@ -135,7 +135,7 @@ export function InterviewPrepModal({ application, onClose }: Props) {
           {state.status === 'error' && (
             <div className="p-6">
               <div className="flex gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                <AlertCircle size={18} className="flex-shrink-0 mt-0.5" />
+                <AlertCircle size={18} className="shrink-0 mt-0.5" />
                 {state.message}
               </div>
             </div>
@@ -174,7 +174,7 @@ export function InterviewPrepModal({ application, onClose }: Props) {
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
                     className={cn(
-                      'px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors flex-shrink-0',
+                      'px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors shrink-0',
                       activeCategory === cat
                         ? 'bg-primary text-white'
                         : 'bg-background border border-border text-muted hover:text-foreground'
@@ -215,7 +215,7 @@ export function InterviewPrepModal({ application, onClose }: Props) {
                       >
                         {/* Category dot */}
                         <div
-                          className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
+                          className="w-1.5 h-1.5 rounded-full mt-2 shrink-0"
                           style={{ backgroundColor: color }}
                         />
 
@@ -248,7 +248,7 @@ export function InterviewPrepModal({ application, onClose }: Props) {
                           <p className="text-sm font-medium leading-snug">{q.question}</p>
                         </div>
 
-                        <div className="flex-shrink-0 text-muted">
+                        <div className="shrink-0 text-muted">
                           {isExpanded
                             ? <ChevronUp size={16} />
                             : <ChevronDown size={16} />
@@ -261,7 +261,7 @@ export function InterviewPrepModal({ application, onClose }: Props) {
                         <div className="px-4 pb-4 pt-0 space-y-3">
                           {/* Tip */}
                           <div className="flex gap-2.5 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
-                            <Lightbulb size={15} className="text-amber-400 flex-shrink-0 mt-0.5" />
+                            <Lightbulb size={15} className="text-amber-400 shrink-0 mt-0.5" />
                             <p className="text-xs text-amber-200 leading-relaxed">{q.tip}</p>
                           </div>
 
@@ -289,7 +289,7 @@ export function InterviewPrepModal({ application, onClose }: Props) {
         </div>
 
         {/* Footer */}
-        <div className="p-6 border-t border-border flex-shrink-0 flex gap-3">
+        <div className="p-6 border-t border-border shrink-0 flex gap-3">
           {state.status === 'success' ? (
             <>
               <button

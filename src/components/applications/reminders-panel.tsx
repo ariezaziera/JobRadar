@@ -170,7 +170,7 @@ export function RemindersPanel({ applicationId }: Props) {
                 className="flex items-start gap-3 p-3 rounded-xl bg-background border border-border group"
               >
                 <div
-                  className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0"
+                  className="w-2 h-2 rounded-full mt-1.5 shrink-0"
                   style={{ backgroundColor: color }}
                 />
                 <div className="flex-1 min-w-0">
@@ -204,7 +204,7 @@ export function RemindersPanel({ applicationId }: Props) {
                   <button
                     onClick={() => handleDelete(r.id)}
                     disabled={deletingId === r.id}
-                    className="opacity-0 group-hover:opacity-100 p-1 rounded-lg hover:bg-red-500/15 text-muted hover:text-red-400 transition-all flex-shrink-0"
+                    className="opacity-0 group-hover:opacity-100 p-1 rounded-lg hover:bg-red-500/15 text-muted hover:text-red-400 transition-all shrink-0"
                   >
                     {deletingId === r.id
                       ? <Loader2 size={13} className="animate-spin" />

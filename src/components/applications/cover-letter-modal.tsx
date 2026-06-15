@@ -54,7 +54,7 @@ export function CoverLetterModal({ application, onClose }: Props) {
       <div className="relative w-full max-w-2xl bg-card border border-border rounded-2xl shadow-2xl flex flex-col max-h-[90vh]">
 
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-border flex-shrink-0">
+        <div className="flex items-center justify-between p-6 border-b border-border shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center">
               <FileText size={18} className="text-primary" />
@@ -125,7 +125,7 @@ export function CoverLetterModal({ application, onClose }: Props) {
           {/* Error */}
           {state.status === 'error' && (
             <div className="flex gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-              <AlertCircle size={18} className="flex-shrink-0 mt-0.5" />
+              <AlertCircle size={18} className="shrink-0 mt-0.5" />
               {state.message}
             </div>
           )}
@@ -170,7 +170,7 @@ export function CoverLetterModal({ application, onClose }: Props) {
         </div>
 
         {/* Footer */}
-        <div className="p-6 border-t border-border flex-shrink-0">
+        <div className="p-6 border-t border-border shrink-0">
           {state.status !== 'success' ? (
             <button
               onClick={handleGenerate}

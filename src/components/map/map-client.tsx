@@ -85,7 +85,7 @@ export function MapClient({ applications }: Props) {
     <div className="h-screen flex flex-col">
 
       {/* Header */}
-      <div className="px-8 py-6 flex-shrink-0">
+      <div className="px-8 py-6 shrink-0">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h1 className="text-2xl font-bold mb-1">Application Map</h1>
@@ -117,7 +117,7 @@ export function MapClient({ applications }: Props) {
 
         {/* Status filter */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1">
-          <SlidersHorizontal size={15} className="text-muted flex-shrink-0" />
+          <SlidersHorizontal size={15} className="text-muted shrink-0" />
           {STATUS_OPTIONS.map(s => (
             <button
               key={s}
@@ -148,7 +148,7 @@ export function MapClient({ applications }: Props) {
         </div>
 
         {/* Sidebar stats */}
-        <div className="w-72 flex-shrink-0 space-y-4 overflow-y-auto hidden lg:block">
+        <div className="w-72 shrink-0 space-y-4 overflow-y-auto hidden lg:block">
 
           {/* Remote card */}
           <div className="p-4 rounded-2xl bg-card border border-border">

@@ -162,7 +162,7 @@ export default function ApplicationsPage() {
 
         {/* Search */}
         <div className="flex items-center gap-2 flex-1 px-4 py-2.5 rounded-xl bg-card border border-border focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/30 transition-colors">
-          <Search size={15} className="text-muted flex-shrink-0" />
+          <Search size={15} className="text-muted shrink-0" />
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
@@ -178,7 +178,7 @@ export default function ApplicationsPage() {
 
         {/* Status filter */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
-          <SlidersHorizontal size={15} className="text-muted flex-shrink-0" />
+          <SlidersHorizontal size={15} className="text-muted shrink-0" />
           {STATUS_OPTIONS.map(s => (
             <button
               key={s}

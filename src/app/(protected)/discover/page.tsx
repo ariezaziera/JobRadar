@@ -115,7 +115,7 @@ function JobCard({ job }: { job: DiscoveredJob }) {
         {/* Fit score */}
         {job.fit_score !== null && (
           <div
-            className="flex flex-col items-center px-3 py-1.5 rounded-xl flex-shrink-0"
+            className="flex flex-col items-center px-3 py-1.5 rounded-xl shrink-0"
             style={{ backgroundColor: `${fitColor}15`, border: `1px solid ${fitColor}30` }}
           >
             <span className="text-lg font-bold font-mono" style={{ color: fitColor }}>

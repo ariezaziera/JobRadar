@@ -80,3 +80,12 @@ select option {
 .light .glow-blob {
   opacity: 0.4;
 }
+
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-radar-sweep {
+  animation: radar-sweep 4s linear infinite;
+}

@@ -25,7 +25,7 @@ export function ApplicationCard({ app, isDragging }: Props) {
             <p className="text-xs text-muted truncate">{app.platform}</p>
           )}
         </div>
-        <MatchScoreBadge score={app.match_score} className="flex-shrink-0" />
+        <MatchScoreBadge score={app.match_score} className="shrink-0" />
       </div>
 
       {/* Position */}
@@ -35,12 +35,12 @@ export function ApplicationCard({ app, isDragging }: Props) {
       <div className="space-y-1.5 mb-3">
         {app.location && (
           <div className="flex items-center gap-1.5 text-xs text-muted">
-            <MapPin size={11} className="flex-shrink-0" />
+            <MapPin size={11} className="shrink-0" />
             <span className="truncate">{app.location}</span>
           </div>
         )}
         <div className="flex items-center gap-1.5 text-xs text-muted">
-          <Calendar size={11} className="flex-shrink-0" />
+          <Calendar size={11} className="shrink-0" />
           <span>
             {new Date(app.applied_date).toLocaleDateString('en-MY', {
               day: 'numeric', month: 'short'

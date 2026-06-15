@@ -67,8 +67,8 @@ function Hero() {
   return (
     <section className="pt-32 pb-24 px-6 relative">
       {/* Glow blobs */}
-      <div className="glow-blob absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="glow-blob absolute top-40 left-1/3 w-[300px] h-[300px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="glow-blob absolute top-20 left-1/2 -translate-x-1/2 w-150 h-100 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="glow-blob absolute top-40 left-1/3 w-75 h-75 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto text-center relative">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-medium mb-8">
@@ -231,7 +231,7 @@ function HowItWorks() {
               key={s.step}
               className="flex gap-8 p-8 rounded-2xl hover:bg-card/50 transition-colors group"
             >
-              <div className="font-mono text-4xl font-bold text-border group-hover:text-primary/30 transition-colors flex-shrink-0 w-16 pt-1">
+              <div className="font-mono text-4xl font-bold text-border group-hover:text-primary/30 transition-colors shrink-0 w-16 pt-1">
                 {s.step}
               </div>
               <div>

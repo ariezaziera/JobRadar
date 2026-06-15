@@ -308,7 +308,7 @@ export function DashboardClient({ applications, profile }: Props) {
                   </div>
                   <p className="text-xs text-muted truncate mt-0.5">{app.position}</p>
                 </div>
-                <div className="flex items-center gap-3 ml-4 flex-shrink-0">
+                <div className="flex items-center gap-3 ml-4 shrink-0">
                   <MatchScoreBadge score={app.match_score} />
                   <span className="text-xs text-muted font-mono">
                     {new Date(app.applied_date).toLocaleDateString('en-MY', {

@@ -133,7 +133,7 @@ export default function BoardPage() {
     <div className="px-8 py-10 h-screen flex flex-col">
 
       {/* Header */}
-      <div className="flex items-center justify-between mb-8 flex-shrink-0">
+      <div className="flex items-center justify-between mb-8 shrink-0">
         <div>
           <h1 className="text-2xl font-bold mb-1">Board</h1>
           <p className="text-sm text-muted">
@@ -193,14 +193,14 @@ function Column({
 
   return (
     <div
-      className="flex-shrink-0 w-72 flex flex-col rounded-2xl bg-card border border-border overflow-hidden"
+      className="shrink-0 w-72 flex flex-col rounded-2xl bg-card border border-border overflow-hidden"
       style={{ minHeight: '200px' }}
     >
       {/* Column header */}
       <div className="px-4 py-3 border-b border-border flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div
-            className="w-2 h-2 rounded-full flex-shrink-0"
+            className="w-2 h-2 rounded-full shrink-0"
             style={{ backgroundColor: color }}
           />
           <span className="text-sm font-semibold">{column.label}</span>
@@ -248,7 +248,7 @@ function DroppableColumn({
     <div
       ref={setNodeRef}
       className={cn(
-        'flex-1 min-h-[120px] transition-colors rounded-b-2xl',
+        'flex-1 min-h-30 transition-colors rounded-b-2xl',
         isOver && 'bg-primary/5',
         isEmpty && isActive && 'border-2 border-dashed border-primary/20'
       )}

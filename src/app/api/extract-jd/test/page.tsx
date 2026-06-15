@@ -34,7 +34,7 @@ export default function TestExtractPage() {
 
       {state.status === 'error' && (
         <div className="flex gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm mb-6">
-          <AlertCircle size={18} className="flex-shrink-0 mt-0.5" />
+          <AlertCircle size={18} className="shrink-0 mt-0.5" />
           {state.message}
         </div>
       )}

@@ -303,7 +303,7 @@ export default function NewApplicationPage() {
               {LEVEL_OPTIONS.map(opt => (
                 <label
                   key={opt.value}
-                  className="flex items-center justify-center py-2.5 rounded-xl border border-border cursor-pointer text-sm has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:text-primary transition-colors"
+                  className="flex items-center justify-center py-2.5 rounded-xl border border-border cursor-pointer text-sm has-checked:border-primary has-checked:bg-primary/10 has-checked:text-primary transition-colors"
                 >
                   <input
                     type="radio"

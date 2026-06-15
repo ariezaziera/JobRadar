@@ -71,7 +71,7 @@ export function ExportButton({ applications, profileName }: Props) {
               onClick={handleCSV}
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 text-sm text-left transition-colors group"
             >
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center shrink-0">
                 <FileSpreadsheet size={15} className="text-emerald-400" />
               </div>
               <div>
@@ -84,7 +84,7 @@ export function ExportButton({ applications, profileName }: Props) {
               onClick={handlePDF}
               className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 text-sm text-left transition-colors group"
             >
-              <div className="w-8 h-8 rounded-lg bg-red-500/15 flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 rounded-lg bg-red-500/15 flex items-center justify-center shrink-0">
                 <FileText size={15} className="text-red-400" />
               </div>
               <div>
