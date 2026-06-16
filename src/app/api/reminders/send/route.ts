@@ -48,7 +48,7 @@ export async function POST(request: Request) {
         const appUrl = `${process.env.NEXT_PUBLIC_APP_URL}/applications/${reminder.application_id}`
 
         await resend.emails.send({
-          from: 'JobRadar <onboarding@resend.dev>',
+          from: 'Qestly <onboarding@resend.dev>',
           to: user.email,
           subject: getEmailSubject({
             type: reminder.type,
