@@ -73,9 +73,9 @@ export default function RegisterPage() {
             <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold mb-3">Account created! 🎯</h2>
+        <h2 className="text-2xl font-bold mb-3">Account created!</h2>
         <p className="text-muted text-sm leading-relaxed max-w-xs mx-auto">
-          Welcome to JobRadar{userName ? `, ${userName}` : ''}. A welcome email is on its way. You can sign in now.
+          Welcome to Qestly {userName ? `, ${userName}` : ''}. A welcome email is on its way. You can sign in now.
         </p>
         <Link
           href="/login"
