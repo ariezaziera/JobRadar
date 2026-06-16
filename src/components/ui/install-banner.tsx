@@ -69,7 +69,7 @@ export function InstallBanner() {
 
           {/* Text */}
           <div className="flex-1 min-w-0">
-            <p className="font-semibold text-sm mb-0.5">Install JobRadar</p>
+            <p className="font-semibold text-sm mb-0.5">Install Qestly</p>
             <p className="text-xs text-muted leading-relaxed">
               Add to your home screen for faster access and offline support.
             </p>
