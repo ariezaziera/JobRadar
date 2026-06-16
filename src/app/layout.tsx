@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'JobRadar',
+    title: 'Qestly',
   },
   formatDetection: { telephone: false },
   icons: {
@@ -51,7 +51,7 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="JobRadar" />
+        <meta name="apple-mobile-web-app-title" content="Qestly" />
         <link rel="apple-touch-icon" href="/icons/apple-icon-180.png" />
         <link rel="apple-touch-startup-image" href="/icons/manifest-icon-512.maskable.png" />
       </head>
