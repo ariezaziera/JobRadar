@@ -17,7 +17,7 @@ export function reminderEmailHtml({
     follow_up: `Time to follow up on your ${position} application`,
     interview:  `Interview reminder — ${position} at ${company}`,
     deadline:   `Deadline reminder — ${position} at ${company}`,
-    custom:     `JobRadar reminder — ${position} at ${company}`,
+    custom:     `Qestly reminder — ${position} at ${company}`,
   }
 
   const ICON_MAP: Record<string, string> = {
@@ -52,7 +52,7 @@ export function reminderEmailHtml({
                     <span style="color:white;font-size:18px;line-height:36px;">◎</span>
                   </td>
                   <td style="padding-left:10px;color:#F1F1F5;font-size:18px;font-weight:700;vertical-align:middle;">
-                    JobRadar
+                    Qestly
                   </td>
                 </tr>
               </table>
@@ -113,7 +113,7 @@ export function reminderEmailHtml({
           <tr>
             <td style="padding-top:24px;text-align:center;">
               <p style="margin:0;color:#4B4B5A;font-size:12px;">
-                Sent by JobRadar · Track Every Application, Land Every Opportunity
+                Sent by Qestly · Track Every Application, Land Every Opportunity
               </p>
             </td>
           </tr>
@@ -141,5 +141,5 @@ export function getEmailSubject({
     deadline:   `⏰ Deadline reminder — ${position} at ${company}`,
     custom:     `🔔 Reminder — ${position} at ${company}`,
   }
-  return map[type] ?? `JobRadar reminder — ${position} at ${company}`
+  return map[type] ?? `Qestly reminder — ${position} at ${company}`
 }
