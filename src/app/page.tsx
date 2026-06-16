@@ -59,7 +59,7 @@ function Logo() {
           <circle cx="8" cy="8" r="7.2" stroke="currentColor" className="text-secondary" strokeWidth="0.8" strokeOpacity="0.4" fill="none" />
         </svg>
       </div>
-      <span className="font-bold text-lg tracking-tight text-primary">JobRadar</span>
+      <span className="font-bold text-lg tracking-tight text-primary">Qestly</span>
     </div>
   )
 }
@@ -88,7 +88,7 @@ function Hero() {
         </h1>
 
         <p className="text-base sm:text-lg text-muted max-w-xl mx-auto mb-8 leading-relaxed">
-          Paste a job URL. JobRadar extracts everything —{' '}
+          Paste a job URL. Qestly extracts everything —{' '}
           <span className="text-secondary font-medium">company</span>,{' '}
           <span className="text-secondary font-medium">role</span>,{' '}
           <span className="text-secondary font-medium">skills</span>,{' '}
@@ -150,7 +150,7 @@ const FEATURES = [
   {
     icon: Target,
     title: 'Skills Match Score',
-    desc: 'JobRadar compares your profile skills to job requirements and gives every application a match score.',
+    desc: 'Qestly compares your profile skills to job requirements and gives every application a match score.',
     color: 'text-accent',
     bg: 'bg-accent/10',
     border: 'hover:border-accent/40',
@@ -174,7 +174,7 @@ const FEATURES = [
   {
     icon: User,
     title: 'Skills Profile',
-    desc: 'Set your target role, skills, and salary. JobRadar uses this to surface the best-matching applications.',
+    desc: 'Set your target role, skills, and salary. Qestly uses this to surface the best-matching applications.',
     color: 'text-accent',
     bg: 'bg-accent/10',
     border: 'hover:border-accent/40',
@@ -190,7 +190,7 @@ function Features() {
             Everything your job search needs
           </h2>
           <p className="text-muted max-w-lg mx-auto">
-            Stop juggling spreadsheets and sticky notes. JobRadar keeps your entire search organized and intelligent.
+            Stop juggling spreadsheets and sticky notes. Qestly keeps your entire search organized and intelligent.
           </p>
         </div>
 
@@ -379,7 +379,7 @@ function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted">
         <Logo />
         <p className="text-muted/70">Track Every Application, Land Every Opportunity</p>
-        <p className="font-mono text-xs text-muted/50">© {new Date().getFullYear()} JobRadar</p>
+        <p className="font-mono text-xs text-muted/50">© {new Date().getFullYear()} Qestly</p>
       </div>
     </footer>
   )
