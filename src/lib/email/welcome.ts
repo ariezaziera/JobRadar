@@ -12,7 +12,7 @@ export async function sendWelcomeEmail({
   await resend.emails.send({
     from: process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev',
     to,
-    subject: 'Welcome to JobRadar 🎯',
+    subject: 'Welcome to Qestly 🎯',
     html: `
       <!DOCTYPE html>
       <html>
@@ -25,7 +25,7 @@ export async function sendWelcomeEmail({
 
             <!-- Brand -->
             <div style="text-align:center;margin-bottom:32px;">
-              <h1 style="color:#6366F1;font-size:24px;font-weight:700;margin:0;letter-spacing:-0.5px;">JobRadar 🎯</h1>
+              <h1 style="color:#6366F1;font-size:24px;font-weight:700;margin:0;letter-spacing:-0.5px;">Qestly 🎯</h1>
               <p style="color:rgba(255,255,255,0.35);font-size:12px;margin:4px 0 0;">Your job search command centre</p>
             </div>
 
@@ -34,7 +34,7 @@ export async function sendWelcomeEmail({
               <div style="text-align:center;font-size:40px;margin-bottom:20px;">👋</div>
               <h2 style="color:#ffffff;font-size:20px;font-weight:700;margin:0 0 12px;text-align:center;">Welcome, ${name}!</h2>
               <p style="color:rgba(255,255,255,0.65);font-size:15px;line-height:1.6;margin:0;text-align:center;">
-                Your JobRadar account is ready. Start tracking your applications, set goals, and land that dream job.
+                Your Qestly account is ready. Start tracking your applications, set goals, and land that dream job.
               </p>
             </div>
 
@@ -48,7 +48,7 @@ export async function sendWelcomeEmail({
 
             <!-- Footer -->
             <p style="color:rgba(255,255,255,0.2);font-size:11px;text-align:center;margin:0;line-height:1.6;">
-              Hi ${name}, this is an automated message from JobRadar.
+              Hi ${name}, this is an automated message from Qestly.
             </p>
           </div>
         </body>
