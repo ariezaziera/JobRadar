@@ -27,7 +27,7 @@ function formatSkills(skills: string[]) {
 // ─────────────────────────────────────────
 // CSV Export
 // ─────────────────────────────────────────
-export function exportToCSV(applications: Application[], filename = 'jobradar-applications') {
+export function exportToCSV(applications: Application[], filename = 'qestly-applications') {
   const headers = [
     'Position',
     'Company',
@@ -89,7 +89,7 @@ export function exportToCSV(applications: Application[], filename = 'jobradar-ap
 export function exportToPDF(
   applications: Application[],
   profileName: string | null,
-  filename = 'jobradar-report'
+  filename = 'qestly-report'
 ) {
   const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' })
   const pageW = doc.internal.pageSize.getWidth()
@@ -129,7 +129,7 @@ export function exportToPDF(
   doc.setFontSize(10)
   doc.text('◎', 21.5, 33)
 
-  // JobRadar wordmark
+  // Qestly wordmark
   doc.setTextColor(...TEXT)
   doc.setFontSize(20)
   doc.setFont('helvetica', 'bold')
@@ -252,7 +252,7 @@ export function exportToPDF(
   // Footer
   doc.setTextColor(...MUTED)
   doc.setFontSize(8)
-  doc.text('JobRadar — jobradar.vercel.app', pageW / 2, pageH - 8, { align: 'center' })
+  doc.text('Qestly — qestly.vercel.app', pageW / 2, pageH - 8, { align: 'center' })
 
   // ─── Page 2: Applications Table ───
   doc.addPage()
