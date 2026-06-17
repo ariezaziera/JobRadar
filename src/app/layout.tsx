@@ -22,16 +22,16 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'Qestly — Main Quest: Get Hired!',
-  description: 'AI-powered job application tracker. Paste a URL, Gemini extracts everything, track your pipeline from first click to signed offer.',
+  description: 'AI-powered job application tracker. Paste a URL, Groq AI extracts everything, track your pipeline from first click to signed offer.',
   manifest: '/manifest.json',
-openGraph: {
+  openGraph: {
     title: 'Qestly — Main Quest: Get Hired',
     description: 'AI-powered job application tracker. Paste a URL, Groq AI extracts everything, track your pipeline from first click to signed offer.',
-    url: 'https://qestly.vercel.app/og-image.png',
+    url: 'https://qestly.vercel.app', // ✅ FIXED — just the site URL
     siteName: 'Qestly',
     images: [
       {
-        url: '/icons/manifest-icon-512.maskable.png', // or a proper OG image
+        url: 'https://qestly.vercel.app/og-image.png', // ✅ Image URL here
         width: 1200,
         height: 630,
         alt: 'Qestly — Main Quest: Get Hired',
@@ -43,7 +43,7 @@ openGraph: {
     card: 'summary_large_image',
     title: 'Qestly — Main Quest: Get Hired',
     description: 'AI-powered job application tracker. Paste a URL, Groq AI extracts everything, track your pipeline from first click to signed offer.',
-    images: ['/icons/manifest-icon-512.maskable.png'],
+    images: ['https://qestly.vercel.app/og-image.png'], // ✅ Absolute URL for Twitter
   },
   appleWebApp: {
     capable: true,
