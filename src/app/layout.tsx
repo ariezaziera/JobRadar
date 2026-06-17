@@ -24,6 +24,27 @@ export const metadata: Metadata = {
   title: 'Qestly — Main Quest: Get Hired!',
   description: 'AI-powered job application tracker. Paste a URL, Gemini extracts everything, track your pipeline from first click to signed offer.',
   manifest: '/manifest.json',
+openGraph: {
+    title: 'Qestly — Main Quest: Get Hired',
+    description: 'AI-powered job application tracker. Paste a URL, Groq AI extracts everything, track your pipeline from first click to signed offer.',
+    url: 'https://qestly.vercel.app',
+    siteName: 'Qestly',
+    images: [
+      {
+        url: '/icons/manifest-icon-512.maskable.png', // or a proper OG image
+        width: 1200,
+        height: 630,
+        alt: 'Qestly — Main Quest: Get Hired',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Qestly — Main Quest: Get Hired',
+    description: 'AI-powered job application tracker. Paste a URL, Groq AI extracts everything, track your pipeline from first click to signed offer.',
+    images: ['/icons/manifest-icon-512.maskable.png'],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
