@@ -82,9 +82,9 @@ function Hero() {
 
         {/* H1 — scaled down on mobile */}
         <h1 className="text-[2.75rem] sm:text-5xl md:text-7xl font-bold tracking-[-0.02em] leading-[1.1] mb-5 text-primary">
-          Track Every Application,
+          Main Quest:
           <br />
-          Land Every Opportunity
+          Get Hired!
         </h1>
 
         <p className="text-base sm:text-lg text-muted max-w-xl mx-auto mb-8 leading-relaxed">
