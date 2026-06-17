@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 openGraph: {
     title: 'Qestly — Main Quest: Get Hired',
     description: 'AI-powered job application tracker. Paste a URL, Groq AI extracts everything, track your pipeline from first click to signed offer.',
-    url: 'https://qestly.vercel.app',
+    url: 'https://qestly.vercel.app/og-image.png',
     siteName: 'Qestly',
     images: [
       {
