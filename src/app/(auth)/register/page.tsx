@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { createClient } from '@/lib/supabase/client'
 import { Input } from '@/components/ui/input'
+import { GoogleSignIn } from '@/components/auth/GoogleSignIn'
 
 const schema = z.object({
   full_name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -39,31 +40,25 @@ export default function RegisterPage() {
     const supabase = createClient()
 
     const { error } = await supabase.auth.signUp({
-        email: data.email,
-        password: data.password,
-        options: {
+      email: data.email,
+      password: data.password,
+      options: {
         data: { full_name: data.full_name },
-        },
+      },
     })
 
     if (error) {
-        setServerError(error.message)
-        return
+      setServerError(error.message)
+      return
     }
 
-    // Send welcome email via Resend
-    await fetch('/api/auth/send-welcome', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: data.email, name: data.full_name }),
-    })
+    // Welcome email removed — takde dah
 
-    // Sign out so user manually logs in
     await supabase.auth.signOut()
 
     setUserName(data.full_name)
     setSuccess(true)
-    }
+  }
 
   if (success) {
     return (
@@ -75,7 +70,7 @@ export default function RegisterPage() {
         </div>
         <h2 className="text-2xl font-bold mb-3">Account created!</h2>
         <p className="text-muted text-sm leading-relaxed max-w-xs mx-auto">
-          Welcome to Qestly {userName ? `, ${userName}` : ''}. A welcome email is on its way. You can sign in now.
+          Welcome to Qestly{userName ? `, ${userName}` : ''}. Your account is ready. You can sign in now.
         </p>
         <Link
           href="/login"
@@ -140,6 +135,18 @@ export default function RegisterPage() {
         >
           {isSubmitting ? 'Creating account…' : 'Create account'}
         </button>
+        
+        <div className="relative">
+           <div className="absolute inset-0 flex items-center">
+             <span className="w-full border-t" />
+           </div>
+           <div className="relative flex justify-center text-xs uppercase">
+             <span className="bg-background px-2 text-muted-foreground">
+               Or continue with
+             </span>
+           </div>
+          </div>
+         <GoogleSignIn />
       </div>
 
       <p className="text-center text-sm text-muted mt-6">

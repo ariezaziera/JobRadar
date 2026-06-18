@@ -5,6 +5,18 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+// DYNAMIC URL HELPER — guna NEXT_PUBLIC_APP_URL
+export const getURL = () => {
+  let url = process?.env?.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
+  
+  // Pastikan ada http:// atau https://
+  url = url.startsWith('http') ? url : `https://${url}`
+  // Pastikan takde trailing slash
+  url = url.endsWith('/') ? url.slice(0, -1) : url
+  
+  return url
+}
+
 export const STATUS_LABELS: Record<string, string> = {
   applied: 'Applied',
   response: 'Response',

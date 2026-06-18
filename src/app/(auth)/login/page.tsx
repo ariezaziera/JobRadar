@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { createClient } from '@/lib/supabase/client'
 import { Input } from '@/components/ui/input'
+import { GoogleSignIn } from '@/components/auth/GoogleSignIn'
 
 const schema = z.object({
   email: z.string().email('Enter a valid email'),
@@ -69,6 +70,7 @@ export default function LoginPage() {
             {...register('password')}
             error={errors.password?.message}
           />
+
           <div className="text-right">
             <Link href="#" className="text-xs text-muted hover:text-primary transition-colors">
               Forgot password?
@@ -89,6 +91,21 @@ export default function LoginPage() {
         >
           {isSubmitting ? 'Signing in…' : 'Sign in'}
         </button>
+
+        
+
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-background px-2 text-muted-foreground">
+                Or continue with
+              </span>
+            </div>
+          </div>
+
+          <GoogleSignIn />
       </div>
 
       <p className="text-center text-sm text-muted mt-6">

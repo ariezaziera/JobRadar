@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { Sidebar } from '@/components/layout/sidebar'
 import { MobileNav } from '@/components/layout/mobile-nav'
 import { InstallBanner } from '@/components/ui/install-banner'
+import { IdleTimeoutProvider } from '@/components/providers/idle-timeout-provider'
 
 export default async function ProtectedLayout({
   children,
@@ -14,15 +15,17 @@ export default async function ProtectedLayout({
   if (!user) redirect('/login')
 
   return (
-    <div className="flex min-h-screen bg-background">
-      <div className="hidden md:block">
-        <Sidebar />
+    <IdleTimeoutProvider>
+      <div className="flex min-h-screen bg-background">
+        <div className="hidden md:block">
+          <Sidebar />
+        </div>
+        <main className="flex-1 min-w-0 overflow-x-hidden md:ml-60 min-h-screen pb-20 md:pb-0">
+          {children}
+        </main>
+        <MobileNav />
+        <InstallBanner />
       </div>
-      <main className="flex-1 min-w-0 overflow-x-hidden md:ml-60 min-h-screen pb-20 md:pb-0">
-        {children}
-      </main>
-      <MobileNav />
-      <InstallBanner />
-    </div>
+    </IdleTimeoutProvider>
   )
 }
