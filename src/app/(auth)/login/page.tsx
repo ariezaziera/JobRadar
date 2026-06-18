@@ -9,6 +9,7 @@ import { z } from 'zod'
 import { createClient } from '@/lib/supabase/client'
 import { Input } from '@/components/ui/input'
 import { GoogleSignIn } from '@/components/auth/GoogleSignIn'
+import { Eye, EyeOff } from 'lucide-react'
 
 const schema = z.object({
   email: z.string().email('Enter a valid email'),
@@ -20,6 +21,7 @@ type FormData = z.infer<typeof schema>
 export default function LoginPage() {
   const router = useRouter()
   const [serverError, setServerError] = useState<string | null>(null)
+  const [showPassword, setShowPassword] = useState(false)
 
   const {
     register,
@@ -62,14 +64,31 @@ export default function LoginPage() {
         />
 
         <div className="space-y-1.5">
-          <Input
-            id="password"
-            type="password"
-            label="Password"
-            placeholder="••••••••"
-            {...register('password')}
-            error={errors.password?.message}
-          />
+          <div className="relative">
+            <Input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              label="Password"
+              placeholder="••••••••"
+              {...register('password')}
+              error={errors.password?.message}
+              className="pr-10"
+            />
+            
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-[38px] text-muted-foreground hover:text-foreground transition-colors focus:outline-none"
+              tabIndex={-1}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+            >
+              {showPassword ? (
+                <EyeOff className="h-4 w-4" />
+              ) : (
+                <Eye className="h-4 w-4" />
+              )}
+            </button>
+          </div>
 
           <div className="text-right">
             <Link href="#" className="text-xs text-muted hover:text-primary transition-colors">
@@ -77,7 +96,7 @@ export default function LoginPage() {
             </Link>
           </div>
         </div>
-
+        
         {serverError && (
           <div className="px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
             {serverError}
@@ -92,20 +111,18 @@ export default function LoginPage() {
           {isSubmitting ? 'Signing in…' : 'Sign in'}
         </button>
 
-        
-
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">
-                Or continue with
-              </span>
-            </div>
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
           </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground">
+              Or continue with
+            </span>
+          </div>
+        </div>
 
-          <GoogleSignIn />
+        <GoogleSignIn />
       </div>
 
       <p className="text-center text-sm text-muted mt-6">

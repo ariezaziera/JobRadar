@@ -9,6 +9,7 @@ import { z } from 'zod'
 import { createClient } from '@/lib/supabase/client'
 import { Input } from '@/components/ui/input'
 import { GoogleSignIn } from '@/components/auth/GoogleSignIn'
+import { Eye, EyeOff } from 'lucide-react'
 
 const schema = z.object({
   full_name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -27,6 +28,8 @@ export default function RegisterPage() {
   const [serverError, setServerError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const [userName, setUserName] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false) // NEW: separate state for confirm
 
   const {
     register,
@@ -51,8 +54,6 @@ export default function RegisterPage() {
       setServerError(error.message)
       return
     }
-
-    // Welcome email removed — takde dah
 
     await supabase.auth.signOut()
 
@@ -105,22 +106,60 @@ export default function RegisterPage() {
           {...register('email')}
           error={errors.email?.message}
         />
-        <Input
-          id="password"
-          type="password"
-          label="Password"
-          placeholder="Min. 8 characters"
-          {...register('password')}
-          error={errors.password?.message}
-        />
-        <Input
-          id="confirm"
-          type="password"
-          label="Confirm password"
-          placeholder="••••••••"
-          {...register('confirm')}
-          error={errors.confirm?.message}
-        />
+
+        {/* PASSWORD INPUT */}
+        <div className="relative">
+          <Input
+            id="password"
+            type={showPassword ? 'text' : 'password'}
+            label="Password"
+            placeholder="••••••••"
+            {...register('password')}
+            error={errors.password?.message}
+            className="pr-10"
+          />
+          
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-[38px] text-muted-foreground hover:text-foreground transition-colors focus:outline-none"
+            tabIndex={-1}
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
+          >
+            {showPassword ? (
+              <EyeOff className="h-4 w-4" />
+            ) : (
+              <Eye className="h-4 w-4" />
+            )}
+          </button>
+        </div>
+
+        {/* CONFIRM PASSWORD INPUT — FIXED */}
+        <div className="relative">
+          <Input
+            id="confirm"
+            type={showConfirm ? 'text' : 'password'} // FIXED: use showConfirm
+            label="Confirm password"
+            placeholder="••••••••"
+            {...register('confirm')}
+            error={errors.confirm?.message}
+            className="pr-10" // FIXED: added pr-10
+          />
+          
+          <button
+            type="button"
+            onClick={() => setShowConfirm(!showConfirm)} // FIXED: use setShowConfirm
+            className="absolute right-3 top-[38px] text-muted-foreground hover:text-foreground transition-colors focus:outline-none"
+            tabIndex={-1}
+            aria-label={showConfirm ? 'Hide confirm password' : 'Show confirm password'}
+          >
+            {showConfirm ? ( // FIXED: use showConfirm
+              <EyeOff className="h-4 w-4" />
+            ) : (
+              <Eye className="h-4 w-4" />
+            )}
+          </button>
+        </div>
 
         {serverError && (
           <div className="px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
@@ -145,8 +184,8 @@ export default function RegisterPage() {
                Or continue with
              </span>
            </div>
-          </div>
-         <GoogleSignIn />
+        </div>
+        <GoogleSignIn />
       </div>
 
       <p className="text-center text-sm text-muted mt-6">
