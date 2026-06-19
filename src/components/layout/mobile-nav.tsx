@@ -79,80 +79,66 @@ export function MobileNav() {
 
       {/* Bottom nav */}
       <nav className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-card/90 backdrop-blur-md border-t border-border">
-        <div className="relative flex items-center justify-around px-2 pt-2 pb-2 safe-area-pb">
-          {NAV.map(({ href, icon: Icon, label }) => {
-            const active = isActive(href)
-            return (
-              <Link
-                key={href}
-                href={href}
-                className={cn(
-                  'flex flex-col items-center justify-center gap-1 h-12 px-4 rounded-xl transition-colors min-w-0',
-                  active ? 'text-primary' : 'text-muted hover:text-foreground'
-                )}
-              >
-                <Icon size={20} strokeWidth={active ? 2.2 : 1.8} />
-                <span className={cn(
-                  'text-[10px] font-medium truncate',
-                  active ? 'text-primary' : 'text-muted'
-                )}>
-                  {label}
-                </span>
-              </Link>
-            )
-          })}
+  <div className="grid grid-cols-5 items-end px-2 pt-2 pb-2 safe-area-pb">
+    {NAV.map(({ href, icon: Icon, label }) => {
+      const active = isActive(href)
+      return (
+        <Link
+          key={href}
+          href={href}
+          className={cn(
+            'flex flex-col items-center gap-1 py-2 rounded-xl transition-colors',
+            active ? 'text-primary' : 'text-muted hover:text-foreground'
+          )}
+        >
+          <Icon size={20} strokeWidth={active ? 2.2 : 1.8} />
+          <span className={cn('text-[10px] font-medium truncate', active ? 'text-primary' : 'text-muted')}>
+            {label}
+          </span>
+        </Link>
+      )
+    })}
 
-          {/* Center raised FAB — New Application */}
-          <Link
-            href="/applications/new"
-            className="flex flex-col items-center justify-center h-12 w-12 shrink-0"
-            aria-label="New Application"
-          >
-            <span className="w-11 h-11 -mt-6 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg shadow-primary/30 active:scale-95 transition-transform">
-              <Plus size={22} strokeWidth={2.4} />
-            </span>
-          </Link>
+    {/* Center raised FAB */}
+    <Link href="/applications/new" className="flex flex-col items-center -translate-y-3" aria-label="New Application">
+      <span className="w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg shadow-primary/30 active:scale-95 transition-transform">
+        <Plus size={26} strokeWidth={2.4} />
+      </span>
+    </Link>
 
-          {NAV_RIGHT.map(({ href, icon: Icon, label }) => {
-            const active = isActive(href)
-            return (
-              <Link
-                key={href}
-                href={href}
-                className={cn(
-                  'flex flex-col items-center justify-center gap-1 h-12 px-4 rounded-xl transition-colors min-w-0',
-                  active ? 'text-primary' : 'text-muted hover:text-foreground'
-                )}
-              >
-                <Icon size={20} strokeWidth={active ? 2.2 : 1.8} />
-                <span className={cn(
-                  'text-[10px] font-medium truncate',
-                  active ? 'text-primary' : 'text-muted'
-                )}>
-                  {label}
-                </span>
-              </Link>
-            )
-          })}
+    {NAV_RIGHT.map(({ href, icon: Icon, label }) => {
+      const active = isActive(href)
+      return (
+        <Link
+          key={href}
+          href={href}
+          className={cn(
+            'flex flex-col items-center gap-1 py-2 rounded-xl transition-colors',
+            active ? 'text-primary' : 'text-muted hover:text-foreground'
+          )}
+        >
+          <Icon size={20} strokeWidth={active ? 2.2 : 1.8} />
+          <span className={cn('text-[10px] font-medium truncate', active ? 'text-primary' : 'text-muted')}>
+            {label}
+          </span>
+        </Link>
+      )
+    })}
 
-          {/* More */}
-          <button
-            onClick={() => setMoreOpen(true)}
-            className={cn(
-              'flex flex-col items-center justify-center gap-1 h-12 px-4 rounded-xl transition-colors min-w-0',
-              moreActive ? 'text-primary' : 'text-muted hover:text-foreground'
-            )}
-          >
-            <MoreHorizontal size={20} strokeWidth={moreActive ? 2.2 : 1.8} />
-            <span className={cn(
-              'text-[10px] font-medium truncate',
-              moreActive ? 'text-primary' : 'text-muted'
-            )}>
-              More
-            </span>
-          </button>
-        </div>
-      </nav>
+    <button
+      onClick={() => setMoreOpen(true)}
+      className={cn(
+        'flex flex-col items-center gap-1 py-2 rounded-xl transition-colors',
+        moreActive ? 'text-primary' : 'text-muted hover:text-foreground'
+      )}
+    >
+      <MoreHorizontal size={20} strokeWidth={moreActive ? 2.2 : 1.8} />
+      <span className={cn('text-[10px] font-medium truncate', moreActive ? 'text-primary' : 'text-muted')}>
+        More
+      </span>
+    </button>
+  </div>
+</nav>
     </>
   )
 }
