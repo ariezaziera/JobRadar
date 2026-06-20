@@ -78,7 +78,7 @@ export function MobileNav() {
       )}
 
       {/* Bottom nav */}
-      <nav className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-card/90 backdrop-blur-md border-t border-border">
+      <nav className="fixed bottom-0 inset-x-0 z-[1000] md:hidden bg-card/90 backdrop-blur-md border-t border-border">
   <div className="grid grid-cols-5 items-end px-2 pt-2 pb-2 safe-area-pb">
     {NAV.map(({ href, icon: Icon, label }) => {
       const active = isActive(href)
