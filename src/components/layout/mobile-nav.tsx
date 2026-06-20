@@ -36,7 +36,7 @@ export function MobileNav() {
     <>
       {/* More sheet */}
       {moreOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
+        <div className="fixed inset-0 z-[1010] md:hidden">
           <div
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             onClick={() => setMoreOpen(false)}
