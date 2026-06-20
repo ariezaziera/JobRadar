@@ -91,3 +91,19 @@ select option {
 .animate-radar-sweep {
   animation: radar-sweep 4s linear infinite;
 }
+
+/* Force Leaflet to establish its OWN stacking context so its internal
+   z-index:1000 panes/controls can never escape above app chrome
+   (sidebar, bottom nav, sheets) which also use z-index:1000+. */
+.leaflet-container {
+  position: relative !important;
+  z-index: 0;
+}
+
+/* Belt-and-suspenders: cap Leaflet's internal layers lower too. */
+.leaflet-pane,
+.leaflet-top,
+.leaflet-bottom,
+.leaflet-control-container {
+  z-index: 400;
+}
