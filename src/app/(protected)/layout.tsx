@@ -21,11 +21,14 @@ export default async function ProtectedLayout({
   return (
     <IdleTimeoutProvider>
       <div className="flex min-h-screen bg-background">
+
+        {/* SIDEBAR */}
         <Sidebar
           userEmail={user.email}
           userAvatarUrl={user.user_metadata?.avatar_url}
         />
 
+        {/* MAIN CONTENT */}
         <div className="flex-1 min-w-0 flex flex-col">
           <MobileHeader
             userEmail={user.email}
