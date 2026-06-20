@@ -100,7 +100,7 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
 
       {/* Header card */}
       <div className="p-6 rounded-2xl bg-card border border-border mb-5">
-        <div className="flex items-start justify-between gap-4 mb-4">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-3 mb-1">
               <h1 className="text-2xl font-bold truncate">{app.position}</h1>
@@ -113,34 +113,34 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2 overflow-x-auto md:overflow-visible -mx-1 px-1 md:mx-0 md:px-0 shrink-0">
             {app.url && (
               <a
                 href={app.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-xl border border-border hover:border-primary/40 text-muted hover:text-foreground transition-colors"
+                className="p-2 rounded-xl border border-border hover:border-primary/40 text-muted hover:text-foreground transition-colors shrink-0"
               >
                 <ExternalLink size={16} />
               </a>
             )}
             <button
               onClick={() => setShowCoverLetter(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border hover:border-primary/40 text-sm text-muted hover:text-foreground transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border hover:border-primary/40 text-sm text-muted hover:text-foreground transition-colors shrink-0 whitespace-nowrap"
             >
               <FileText size={16} />
               Cover Letter
             </button>
             <button
               onClick={() => setShowInterviewPrep(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border hover:border-accent/40 text-sm text-muted hover:text-foreground transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border hover:border-accent/40 text-sm text-muted hover:text-foreground transition-colors shrink-0 whitespace-nowrap"
             >
               <Brain size={16} />
               Interview Prep
             </button>
             <button
               onClick={handleDelete}
-              className="p-2 rounded-xl border border-border hover:border-red-500/40 text-muted hover:text-red-400 transition-colors"
+              className="p-2 rounded-xl border border-border hover:border-red-500/40 text-muted hover:text-red-400 transition-colors shrink-0"
             >
               <Trash2 size={16} />
             </button>
@@ -391,7 +391,7 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
                   <button
                     onClick={saveNotes}
                     disabled={savingNotes}
-                    className="flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 disabled:opacity-50 text-white text-xs font-medium rounded-lg transition-colors"
+                    className="flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary/90 disabled:opacity-50 text-on-primary text-xs font-medium rounded-lg transition-colors"
                   >
                     {savingNotes
                       ? <><Loader2 size={13} className="animate-spin" /> Saving…</>
