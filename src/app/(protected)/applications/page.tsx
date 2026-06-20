@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useApplications, useDeleteApplication } from '@/hooks/use-applications'
 import { StatusBadge, MatchScoreBadge } from '@/components/ui/badge'
 import {
@@ -350,8 +351,13 @@ function DesktopRow({
   onDelete: () => void
   isDeleting: boolean
 }) {
+  const router = useRouter()
+
   return (
-    <tr className="group hover:bg-card/40 transition-colors">
+    <tr
+      onClick={() => router.push(`/applications/${app.id}`)}
+      className="group hover:bg-card/40 transition-colors cursor-pointer"
+    >
       <td className="px-5 py-4">
         <div className="font-medium text-sm">{app.company}</div>
         {app.location && <div className="text-xs text-muted mt-0.5">{app.location}</div>}
@@ -373,7 +379,7 @@ function DesktopRow({
           })}
         </span>
       </td>
-      <td className="px-5 py-4">
+      <td className="px-5 py-4" onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-end gap-2">
           {app.url && (
             <a
