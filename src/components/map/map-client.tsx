@@ -82,7 +82,7 @@ export function MapClient({ applications }: Props) {
   }
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-full flex flex-col">
 
       {/* Header */}
       <div className="px-8 py-6 shrink-0">
