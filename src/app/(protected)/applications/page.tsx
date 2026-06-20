@@ -117,7 +117,7 @@ export default function ApplicationsPage() {
           <ExportButton applications={filtered} profileName={null} />
           <Link
             href="/applications/new"
-            className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 bg-primary hover:bg-primary/90 text-white text-sm font-medium rounded-xl transition-colors whitespace-nowrap"
+            className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 bg-primary hover:bg-primary/90 text-on-primary text-sm font-medium rounded-xl transition-colors whitespace-nowrap"
           >
             <Plus size={16} />
             <span className="hidden sm:inline">New Application</span>
@@ -172,7 +172,7 @@ export default function ApplicationsPage() {
                 className={cn(
                   'px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors shrink-0',
                   statusFilter === s
-                    ? 'bg-primary text-white'
+                    ? 'bg-primary text-on-primary'
                     : 'bg-card border border-border text-muted hover:text-foreground'
                 )}
               >
@@ -374,7 +374,7 @@ function DesktopRow({
         </span>
       </td>
       <td className="px-5 py-4">
-        <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
           {app.url && (
             <a
               href={app.url}
@@ -434,7 +434,7 @@ function Empty({ hasApps }: { hasApps: boolean }) {
       {!hasApps && (
         <Link
           href="/applications/new"
-          className="flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary/90 text-white text-sm font-medium rounded-xl transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary/90 text-on-primary text-sm font-medium rounded-xl transition-colors"
         >
           <Plus size={16} />
           Add your first application
