@@ -99,9 +99,19 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
       </Link>
 
       {/* Header card */}
-      <div className="p-6 rounded-2xl bg-card border border-border mb-5">
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-          <div className="min-w-0 flex-1">
+      <div className="p-6 rounded-2xl bg-card border border-border mb-5 relative">
+
+        {/* Delete — standalone, top-right corner */}
+        <button
+          onClick={handleDelete}
+          aria-label="Delete application"
+          className="absolute top-4 right-4 p-2 rounded-xl border border-border hover:border-red-500/40 text-muted hover:text-red-400 transition-colors"
+        >
+          <Trash2 size={16} />
+        </button>
+
+        <div className="flex flex-col gap-4 mb-4">
+          <div className="min-w-0 flex-1 pr-10">
             <div className="flex items-center gap-3 mb-1">
               <h1 className="text-2xl font-bold truncate">{app.position}</h1>
             </div>
@@ -113,7 +123,7 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2 overflow-x-auto md:overflow-visible -mx-1 px-1 md:mx-0 md:px-0 shrink-0">
+          <div className="flex items-center gap-2 overflow-x-auto -mx-1 px-1">
             {app.url && (
               <a
                 href={app.url}
@@ -137,12 +147,6 @@ export function ApplicationDetail({ application: initial, userSkills }: Props) {
             >
               <Brain size={16} />
               Interview Prep
-            </button>
-            <button
-              onClick={handleDelete}
-              className="p-2 rounded-xl border border-border hover:border-red-500/40 text-muted hover:text-red-400 transition-colors shrink-0"
-            >
-              <Trash2 size={16} />
             </button>
           </div>
         </div>
