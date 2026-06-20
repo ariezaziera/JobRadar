@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
@@ -30,6 +30,24 @@ const NAV = [
   { href: '/profile', icon: User, label: 'Profile' },
 ]
 
+// Detects whether the device genuinely supports hover (mouse/trackpad)
+// vs touch-only (phone/tablet), so hover-to-peek never gets stuck open
+// on touch devices that fire mouseenter without a matching mouseleave.
+function useHoverCapable() {
+  const [hoverCapable, setHoverCapable] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
+    setHoverCapable(mq.matches)
+
+    const handler = (e: MediaQueryListEvent) => setHoverCapable(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+
+  return hoverCapable
+}
+
 // Custom tooltip shown next to icons while the sidebar is collapsed
 // and not currently being peeked open.
 function IconLabel({ label, show }: { label: string; show: boolean }) {
@@ -58,13 +76,15 @@ export function Sidebar({
   const { expanded, toggle } = useSidebar()
 
   // Hover-to-peek: temporarily shows the full sidebar as an overlay
-  // without pushing main content (main margin only follows `expanded`).
+  // without pushing main content. Only active on real hover-capable
+  // devices (mouse/trackpad) — disabled on touch so it can't get stuck.
+  const hoverCapable = useHoverCapable()
   const [peeking, setPeeking] = useState(false)
   const peekTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
   const visualExpanded = expanded || peeking
 
   function handleMouseEnter() {
-    if (expanded) return
+    if (!hoverCapable || expanded) return
     peekTimeout.current = setTimeout(() => setPeeking(true), 150)
   }
 
@@ -72,6 +92,17 @@ export function Sidebar({
     if (peekTimeout.current) clearTimeout(peekTimeout.current)
     setPeeking(false)
   }
+
+  // Safety net: if any touch interaction happens, force-close peek.
+  // Covers hybrid devices (touch laptops, some tablets) that can fire
+  // mouseenter without a reliable mouseleave.
+  useEffect(() => {
+    function handleTouchStart() {
+      setPeeking(false)
+    }
+    window.addEventListener('touchstart', handleTouchStart, { passive: true })
+    return () => window.removeEventListener('touchstart', handleTouchStart)
+  }, [])
 
   const focusRing =
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-card'
