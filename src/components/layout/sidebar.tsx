@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
@@ -20,6 +19,7 @@ import {
 
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { AvatarMenu } from '@/components/layout/avatar-menu'
+import { useSidebar } from '@/components/providers/sidebar-provider'
 
 const NAV = [
   { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -41,7 +41,7 @@ export function Sidebar({
 }: SidebarProps) {
   const pathname = usePathname()
   const router = useRouter()
-  const [expanded, setExpanded] = useState(false)
+  const { expanded, setExpanded } = useSidebar()
 
   async function signOut() {
     const supabase = createClient()
@@ -55,7 +55,7 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        'fixed left-0 top-0 h-full bg-card border-r border-border flex flex-col z-40 transition-all duration-200 flex-shrink-0',
+        'fixed left-0 top-0 h-full bg-card border-r border-border flex flex-col z-40 transition-[width] duration-200',
         expanded ? 'w-60' : 'w-[72px]'
       )}
     >
@@ -208,7 +208,7 @@ export function Sidebar({
       {/* Collapse Button */}
       <div className="px-3 pb-3">
         <button
-          onClick={() => setExpanded((v) => !v)}
+          onClick={() => setExpanded(!expanded)}
           aria-label={
             expanded
               ? 'Collapse sidebar'
