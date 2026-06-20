@@ -219,43 +219,45 @@ export default function ApplicationsPage() {
 
           {/* Desktop table */}
           <div className="hidden sm:block rounded-2xl border border-border overflow-hidden">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-border bg-card/50">
-                  {[
-                    { label: 'Company', field: 'company' as SortField },
-                    { label: 'Position', field: 'position' as SortField },
-                    { label: 'Status', field: 'status' as SortField },
-                    { label: 'Match', field: 'match_score' as SortField },
-                    { label: 'Applied', field: 'applied_date' as SortField },
-                  ].map(col => (
-                    <th
-                      key={col.field}
-                      onClick={() => toggleSort(col.field)}
-                      className="text-left px-5 py-3.5 text-xs font-medium text-muted uppercase tracking-wider cursor-pointer hover:text-foreground transition-colors select-none"
-                    >
-                      <div className="flex items-center gap-1.5">
-                        {col.label}
-                        <SortIcon field={col.field} current={sortField} dir={sortDir} />
-                      </div>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[640px]">
+                <thead>
+                  <tr className="border-b border-border bg-card/50">
+                    {[
+                      { label: 'Company', field: 'company' as SortField },
+                      { label: 'Position', field: 'position' as SortField },
+                      { label: 'Status', field: 'status' as SortField },
+                      { label: 'Match', field: 'match_score' as SortField },
+                      { label: 'Applied', field: 'applied_date' as SortField },
+                    ].map(col => (
+                      <th
+                        key={col.field}
+                        onClick={() => toggleSort(col.field)}
+                        className="text-left px-5 py-3.5 text-xs font-medium text-muted uppercase tracking-wider cursor-pointer hover:text-foreground transition-colors select-none whitespace-nowrap"
+                      >
+                        <div className="flex items-center gap-1.5">
+                          {col.label}
+                          <SortIcon field={col.field} current={sortField} dir={sortDir} />
+                        </div>
+                      </th>
+                    ))}
+                    <th className="px-5 py-3.5 text-xs font-medium text-muted uppercase tracking-wider text-right whitespace-nowrap">
+                      Actions
                     </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {filtered.map(app => (
+                    <DesktopRow
+                      key={app.id}
+                      app={app}
+                      onDelete={() => handleDelete(app.id)}
+                      isDeleting={deletingId === app.id}
+                    />
                   ))}
-                  <th className="px-5 py-3.5 text-xs font-medium text-muted uppercase tracking-wider text-right">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {filtered.map(app => (
-                  <DesktopRow
-                    key={app.id}
-                    app={app}
-                    onDelete={() => handleDelete(app.id)}
-                    isDeleting={deletingId === app.id}
-                  />
-                ))}
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
         </>
       )}
