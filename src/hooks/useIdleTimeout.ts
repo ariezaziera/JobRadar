@@ -13,7 +13,7 @@ import { createClient } from '@/lib/supabase/client'
 //   Supabase's own refresh token expiry; idle timeout here is just a
 //   long sanity-check window (e.g. lost/stolen device).
 const BROWSER_IDLE_TIMEOUT = 30 * 60 * 1000              // 30 minutes
-const STANDALONE_IDLE_TIMEOUT = 7 * 24 * 60 * 60 * 1000  // 7 days
+const STANDALONE_IDLE_TIMEOUT = 90 * 24 * 60 * 60 * 1000  // 90 days
 
 const LAST_ACTIVITY_KEY = 'qestly-last-activity'
 
